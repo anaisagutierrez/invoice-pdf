@@ -1,0 +1,173 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 2rem;
+    color: #000;
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+  }
+  
+  .company-info {
+    max-width: 60%;
+  }
+  
+  .logo-box img {
+    max-height: 80px;
+  }
+  
+  .invoice-title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0rem;
+    
+  }
+
+
+
+.invoice-title p {
+    margin-top: 5px; /* Adjust this value to control space above the p */
+    margin-bottom: 10px; /* Remove default bottom margin if any */
+}
+
+  .invoice-title h3{
+
+    color: #0673a9;
+    font-weight: bold;
+    margin-bottom: 5px; /* Adjust this value to control space below the h3 */
+    margin-top: 10px; /* Remove default top margin if any */
+    
+  }
+  
+  .invoice-meta {
+    text-align: left;
+  }
+  
+  .controls {
+    margin-bottom: 1rem;
+
+  }
+  
+  .controls label {
+    margin-right: 1.5rem;
+    font-weight: bold;
+  }
+
+  .controls button {
+    margin-right: 1rem;
+    
+  }
+
+  .controls div {
+    margin-bottom: 10px; /* Adjust the value as needed */
+}
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+  }
+  
+  /* .invoice-table th, .footer-table th {
+    background-color: #d9edf7;
+    text-align: left;
+  } */
+
+  .invoice-table th, .footer-table th {
+    background-color: #d9edf7;
+    text-align: left;
+    print-color-adjust: exact; /* Standard property */
+    -webkit-print-color-adjust: exact; /* For older WebKit browsers */
+}
+
+  
+  th, td {
+    padding: 8px;
+    border: 1px solid #ccc;
+  }
+  
+  .right {
+    text-align: right;
+    font-weight: bold;
+  }
+  
+  .summary-table {
+    width: 40%;
+    float: right;
+    margin-top: 1rem;
+  }
+  
+  .summary-table td {
+    border: none;
+    padding: 4px;
+  }
+
+  .summary-table .balance-row td {
+    border-top: 2px solid  #000; /* This adds the dotted line */
+    padding-top: 1rem; /* This adds space between the line and the text */
+    padding-bottom: 8px;
+}
+  
+  .balance-box {
+    text-align: right;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-top: 2px dotted #000;
+    padding-top: 1rem;
+    margin-top: 2rem;
+  }
+  
+  .footer-table th, .footer-table td {
+    text-align: left;
+  }
+  
+  .footer-table td {
+    font-weight: bold;
+  }
+  
+  .buttons {
+    margin-top: 2rem;
+  }
+  
+  @media print {
+    .buttons, .controls {
+      display: none;
+    }
+  
+    body {
+      margin: 0.5in;
+    }
+  }
+
+  .controls input[type="number"],
+  .controls input[type="text"],
+  .controls input[type="date"],
+  .controls label,
+  .controls button,
+  .controls select { /* Added .controls select here */
+      height: 30px; /* Adjust this value to your desired height */
+      padding: 5px; /* Add some padding for better appearance */
+      box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  }
+  
+
+  .controls button {
+    margin-right: 1rem;
+    /* Added new button styles */
+    background-color: #007bff; /* A standard blue */
+    color: white; /* White text */
+    border: none; /* No border */
+    padding: 8px 15px; /* Padding inside the button */
+    cursor: pointer; /* Show a hand cursor on hover */
+    border-radius: 4px; /* Slightly rounded corners */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  }
+
+  /* Hover effect for buttons */
+  .controls button:hover {
+      background-color: #0056b3; /* Darker blue on hover */
+  }

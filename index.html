@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Invoice #0105</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="company-info">
+      <h2>Great & Good Deals LTD.</h2>
+      <p>9347 193 St, Surrey, BC V4N 4E7<br>
+         sales@good-deals.ca<br>
+         www.good-deals.ca<br>
+         GST/HST Registration No:<br>
+         721208106RT0001</p>
+    </div>
+    <div class="logo-box">
+      <img src="logo.png" alt="Logo">
+    </div>
+  </header>
+
+  <section class="invoice-title">
+    <div>
+      <h3>INVOICE</h3>
+      <!-- <p><strong>1516214 BC LTD.</strong><br>
+         6378 Silver Ave #523<br>
+         BURNABY BC, V5H 0J2<br>
+         CANADA</p> -->
+        <p><strong  id="invoiceAddress"></strong></p>  
+    </div>
+    <div class="invoice-meta">
+      <h3 id="invoiceNumberHeader">INVOICE # 0000</h3>
+      <p>
+        <strong>Date:</strong> <span id="invoiceDate"></span><br>
+         <strong>Terms:</strong> Payable upon receipt<br>
+         <strong>Due Date:</strong> <span id="invoiceDate2"></span></p>
+    </div>
+  </section>
+
+  <section class="controls">
+    
+    <div>
+        <label>Invoice Address
+        <select id="clientAddressDropdown">
+            <option value="">Select Client Address</option>
+            <option value="1516214 BC LTD.<br>6378 Silver Ave #523<br>BURNABY BC, V5H 0J2<br>CANADA">1516214 BC LTD.</option>
+            <option value="BROTHERS HOME EQUIPMENT LTD.<br>12417 NO 2 RD<br>RICHMOND BC V7E 6S4<br>CANADA">BROTHERS HOME EQUIPMENT LTD.</option>
+            <option value="LAST CHANCE WHOLESALE LIMITED<br>4251 Vanguard Rd<br>Richmond BC, V6X 2P6<br>CANADA">LAST CHANCE WHOLESALE LIMITED</option>
+        </select>
+    </label> 
+    </div>
+
+    <div>
+
+        <label>GST (%) <input type="number" id="gstInput" value="5" step="0.01" /></label>
+        <label>Invoice <input type="text" id="invoiceInput" /></label>
+        <label>Invoice Date <input type="date" id="invoiceDateInput" /></label> </div>
+       
+     
+    </div>
+    <div>
+        <label>Total GST <input type="number" id="totalgstInput" step="0.01" /></label>
+        <label>Salvage Cost ($) <input type="number" id="salvageInput" step="0.01" /></label>
+        <button id="applyBtn" >Apply</button>
+        <button id="printBtn">Print / Save as PDF</button>
+    </div>
+    
+</section>
+
+  <table class="invoice-table">
+    <thead>
+      <tr>
+        <th>DESCRIPTION</th>
+        <th>TAX</th>
+        <th>QTY</th>
+        <th>RATE</th>
+        <th>AMOUNT</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Retail products: Miscellaneous merchandise for resale</td>
+        <td>GST</td>
+        <td id="saleQty">1</td>
+        <td id="saleRate"></td>
+        <td class="right" id="saleAmount"></td>
+      </tr>
+      <tr>
+        <td>Retail products: Miscellaneous merchandise for resale</td>
+        <td>Exempt</td>
+        <td id="exemptQty">1</td>
+        <td id="exemptRate"></td>
+        <td class="right" id="exemptAmount"></td>
+      </tr>
+      <tr>
+        <td>Service Fee</td>
+        <td>GST</td>
+        <td id="feeQty">1</td>
+        <td id="feeRate"></td>
+        <td class="right" id="feeAmount"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="summary-table">
+    <tr><td>Subtotal</td><td class="right" id="subtotal"></td></tr>
+    <tr><td>GST@ <span id="gstRate"></span>%</td><td class="right" id="gstAmount"></td></tr>
+    <tr><td><strong>TOTAL</strong></td><td class="right" id="total"></td></tr>
+    <tr class="balance-row"><td><strong>BALANCE DUE</strong></td><td class="right balance-amount"><span id="balanceDue"></span></td></tr>
+  </table>
+
+  <table class="footer-table">
+    <thead>
+      <tr><th>RATE</th><th>TAX</th><th>NET</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>GST@ <span id="gstRate2"></span>%</td>
+        <td id="footerTax"></td>
+        <td id="footerNet"></td>
+      </tr>
+    </tbody>
+  </table>
+
+ 
+
+  <script src="script.js"></script>
+</body>
+</html>
