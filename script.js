@@ -108,7 +108,7 @@ document.getElementById("printBtn").addEventListener("click", (event) => {
     event.preventDefault();
 
     // Check if any of the mandatory fields are empty
-    if (invoiceDateInput.value || invoiceAddress.textContent === '' || gstInput.value === '' || salvageInput.value === '' || totalgstInput.value === '' || invoiceInput.value === '') {
+    if (invoiceDateInput.value === '' || invoiceAddress.textContent === '' || gstInput.value === '' || salvageInput.value === '' || totalgstInput.value === '' || invoiceInput.value === '') {
       alert("Please fill in all the mandatory fields (GST %, Invoice, Total GST, Salvage Cost) before printing.");
     } else {
       updateTotals();
