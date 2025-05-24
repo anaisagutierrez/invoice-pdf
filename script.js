@@ -112,6 +112,23 @@ document.getElementById("printBtn").addEventListener("click", (event) => {
       alert("Please fill in all the mandatory fields (GST %, Invoice, Total GST, Salvage Cost) before printing.");
     } else {
       updateTotals();
+
+      // Get current date in YYYY-MM-DD format
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = (today.getMonth() + 1).toString().padStart(2, '0');
+      const day = today.getDate().toString().padStart(2, '0');
+      const currentDate = `${year}-${month}-${day}`;
+      const invoiceInfo =  invoiceInput.value.replace(/[^a-z0-9]/gi, '_').toUpperCase();
+      // To get the text of the selected option:
+      let selectedOptionAddress = clientAddressDropdown.options[clientAddressDropdown.selectedIndex];
+      selectedOptionAddress = selectedOptionAddress.textContent.replace(/[^a-z0-9]/gi, '_').toUpperCase();
+      // Construct the suggested filename
+      const filename = `${invoiceInfo}_${selectedOptionAddress}_${currentDate}.pdf`;
+     
+      // Set the document title, which often influences the default filename in print dialogs
+      document.title = filename;
+      
       // If all fields are filled, proceed with printing
       window.print();
     }
