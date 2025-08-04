@@ -171,3 +171,14 @@ body {
   .controls button:hover {
       background-color: #0056b3; /* Darker blue on hover */
   }
+
+  .left-container {
+    display: flex;
+    align-items: left;  /* Vertically aligns items in the center */
+    justify-content: left; /* Horizontally centers the items */
+  }
+
+  #poInput {
+    height: 50px;
+    width: 100%;;
+  }

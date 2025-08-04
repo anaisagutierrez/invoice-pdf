@@ -26,6 +26,8 @@ const invoiceDate = document.getElementById("invoiceDate");
 const invoiceDate2 = document.getElementById("invoiceDate2"); 
 const invoiceAddress = document.getElementById("invoiceAddress"); 
 const clientAddressDropdown = document.getElementById("clientAddressDropdown");
+const poInput = document.getElementById("poInput");
+const invoicePO = document.getElementById("invoicePO");
 
 // Helper function to format numbers as currency
 function formatCurrency(number) {
@@ -97,7 +99,7 @@ function updateTotals() {
     footerTax.textContent = formatCurrency(gstAmountValue);
     footerNet.textContent = formatCurrency(totalVal);
     invoiceAddress.innerHTML = clientAddressDropdown.value;
-   
+    invoicePO.textContent = poInput.value || '';
     updateInvoiceDate();
 
 }
@@ -108,8 +110,8 @@ document.getElementById("printBtn").addEventListener("click", (event) => {
     event.preventDefault();
 
     // Check if any of the mandatory fields are empty
-    if (invoiceDateInput.value === '' || invoiceAddress.textContent === '' || gstInput.value === '' || salvageInput.value === '' || totalgstInput.value === '' || invoiceInput.value === '') {
-      alert("Please fill in all the mandatory fields (GST %, Invoice, Total GST, Salvage Cost) before printing.");
+    if (invoiceDateInput.value === '' || invoiceAddress.textContent === '' || gstInput.value === '' || salvageInput.value === '' || totalgstInput.value === '' || invoiceInput.value === '' ||  poInput.value === '') {
+      alert("Please fill in all the mandatory fields (GST %, Invoice, Total GST, Salvage Cost, PO#) before printing.");
     } else {
       updateTotals();
 
@@ -156,6 +158,13 @@ totalgstInput.addEventListener('keypress', (event) => {
   });
 
 gstInput.addEventListener('keypress', (event) => {
+    if (event.key === 'Enter') {
+        updateTotals();
+    }
+  });
+
+
+poInput.addEventListener('keypress', (event) => {
     if (event.key === 'Enter') {
         updateTotals();
     }

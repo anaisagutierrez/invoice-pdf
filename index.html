@@ -34,8 +34,9 @@
       <h3 id="invoiceNumberHeader">INVOICE # 0000</h3>
       <p>
         <strong>Date:</strong> <span id="invoiceDate"></span><br>
-         <strong>Terms:</strong> Payable upon receipt<br>
-         <strong>Due Date:</strong> <span id="invoiceDate2"></span></p>
+        <strong>Terms:</strong> Payable upon receipt<br>
+        <strong>Due Date:</strong> <span id="invoiceDate2"></span></p>
+       
     </div>
   </section>
 
@@ -66,6 +67,22 @@
         <button id="applyBtn" >Apply</button>
         <button id="printBtn">Print / Save as PDF</button>
     </div>
+ 
+  <!-- <div class="left-container">
+    <label for="charList">PO#</label>
+    <input type="text" id="poInput"  placeholder="Enter your list of characters here...">
+  
+  </div>
+
+ <div >
+    <label>PO#<input type="text" id="poInput" ></label>
+  </div>
+ -->
+
+   <div class="left-container">
+    <label >PO#</label>
+    <textarea id="poInput"  rows="4" cols="250" ></textarea>
+  </div>
     
 </section>
 
@@ -124,8 +141,12 @@
     </tbody>
   </table>
 
- 
-
+    <div>
+      <p>
+        <strong>PO#:</strong> <span id="invoicePO"></span><br>
+        
+    </div>
+  
   <script src="script.js"></script>
 </body>
 </html>
