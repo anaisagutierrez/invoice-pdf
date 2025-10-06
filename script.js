@@ -73,6 +73,7 @@ function updateInvoiceDate() {
 }
 
 function updateTotals() {
+
     const gst = parseFloat(gstInput.value)/100 || 0;
     const salvage = parseFloat(salvageInput.value) || 0;
     const saleRateValue = parseFloat(totalgstInput.value/gst);
@@ -100,7 +101,13 @@ function updateTotals() {
     footerNet.textContent = formatCurrency(totalVal);
     invoiceAddress.innerHTML = clientAddressDropdown.value;
     invoicePO.textContent = poInput.value || '';
+
     updateInvoiceDate();
+
+    if (parseFloat(exemptRateValue) < 0 && salvageInput.value  && !(invoiceDateInput.value === '' || invoiceAddress.textContent === '' || gstInput.value === '' || salvageInput.value === '' || totalgstInput.value === '' || invoiceInput.value === '' ||  poInput.value === '') ){
+      alert("Please review the Exempt tax, before printing.");
+      return;
+    } 
 
 }
 
@@ -111,8 +118,11 @@ document.getElementById("printBtn").addEventListener("click", (event) => {
 
     // Check if any of the mandatory fields are empty
     if (invoiceDateInput.value === '' || invoiceAddress.textContent === '' || gstInput.value === '' || salvageInput.value === '' || totalgstInput.value === '' || invoiceInput.value === '' ||  poInput.value === '') {
+    
       alert("Please fill in all the mandatory fields (GST %, Invoice, Total GST, Salvage Cost, PO#) before printing.");
+    
     } else {
+
       updateTotals();
 
       // Get current date in YYYY-MM-DD format
@@ -133,16 +143,14 @@ document.getElementById("printBtn").addEventListener("click", (event) => {
       
       // If all fields are filled, proceed with printing
       window.print();
+
     }
   });
 
 
 document.getElementById("applyBtn").addEventListener("click", () => {
-    updateTotals();
+        updateTotals();
   });
-
-// gstInput.addEventListener("input", updateTotals);
-// salvageInput.addEventListener("input", updateTotals);
 
  // Add event listeners for 'Enter' key press 
  salvageInput.addEventListener('keypress', (event) => {
@@ -162,7 +170,6 @@ gstInput.addEventListener('keypress', (event) => {
         updateTotals();
     }
   });
-
 
 poInput.addEventListener('keypress', (event) => {
     if (event.key === 'Enter') {
