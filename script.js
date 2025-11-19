@@ -1,4 +1,5 @@
 const gstInput = document.getElementById("gstInput");
+const serviceFeeInput = document.getElementById("serviceFeeInput");
 const salvageInput = document.getElementById("salvageInput");
 const totalgstInput = document.getElementById("totalgstInput");
 const invoiceInput = document.getElementById("invoiceInput");
@@ -75,10 +76,11 @@ function updateInvoiceDate() {
 function updateTotals() {
 
     const gst = parseFloat(gstInput.value)/100 || 0;
+    const servicefee = parseFloat(serviceFeeInput.value)/100 || 0;
     const salvage = parseFloat(salvageInput.value) || 0;
     const saleRateValue = parseFloat(totalgstInput.value/gst);
     const exemptRateValue = parseFloat(salvage - saleRateValue); 
-    const feeRateValue = parseFloat(salvage * gst); 
+    const feeRateValue = parseFloat(salvage * servicefee);
 
     const subtotalValue = saleRateValue + exemptRateValue + feeRateValue;
     const gstAmountValue = (saleRateValue*gst)+(feeRateValue*gst);
@@ -104,7 +106,7 @@ function updateTotals() {
 
     updateInvoiceDate();
 
-    if (parseFloat(exemptRateValue) < 0 && salvageInput.value  && !(invoiceDateInput.value === '' || invoiceAddress.textContent === '' || gstInput.value === '' || salvageInput.value === '' || totalgstInput.value === '' || invoiceInput.value === '' ||  poInput.value === '') ){
+    if (parseFloat(exemptRateValue) < 0 && salvageInput.value  && !(invoiceDateInput.value === '' || invoiceAddress.textContent === '' || gstInput.value === '' || salvageInput.value === '' || totalgstInput.value === '' || invoiceInput.value === '' ||  poInput.value === '' || serviceFeeInput.value === '') ){
       alert("Please review the Exempt tax, before printing.");
       return;
     } 
@@ -117,9 +119,9 @@ document.getElementById("printBtn").addEventListener("click", (event) => {
     event.preventDefault();
 
     // Check if any of the mandatory fields are empty
-    if (invoiceDateInput.value === '' || invoiceAddress.textContent === '' || gstInput.value === '' || salvageInput.value === '' || totalgstInput.value === '' || invoiceInput.value === '' ||  poInput.value === '') {
+    if (invoiceDateInput.value === '' || invoiceAddress.textContent === '' || gstInput.value === '' || salvageInput.value === '' || totalgstInput.value === '' || invoiceInput.value === '' ||  poInput.value === '' ||  serviceFeeInput.value === '' ) {
     
-      alert("Please fill in all the mandatory fields (GST %, Invoice, Total GST, Salvage Cost, PO#) before printing.");
+      alert("Please fill in all the mandatory fields (GST %, Invoice, Total GST, Salvage Cost, PO#, Service fee) before printing.");
     
     } else {
 
