@@ -57,7 +57,8 @@
     <div>
 
         <label>GST (%) <input type="number" id="gstInput" value="5" step="0.01" /></label>
-        <label>Service Fee (%)<input type="number" id="serviceFeeInput" value="5" step="1" /></label> 
+        <label>Service Fee (%) <input type="number" id="serviceFeeInput" value="5" step="1" /></label> 
+        <label>Delivery Fee ($) <input type="number" id="deliveryFeeInput" value="" step="1" /></label> 
         <label>Invoice <input type="text" id="invoiceInput" /></label>
         <label>Invoice Date <input type="date" id="invoiceDateInput" /></label> </div>
        
@@ -119,6 +120,13 @@
         <td id="feeQty">1</td>
         <td id="feeRate"></td>
         <td class="right" id="feeAmount"></td>
+      </tr>
+       <tr id="deliveryRow">
+        <td>Delivery Fee</td>
+        <td>GST</td>
+        <td id="deliveryQty">1</td>
+        <td id="deliveryRate"></td>
+        <td class="right" id="deliveryAmount"></td>
       </tr>
     </tbody>
   </table>

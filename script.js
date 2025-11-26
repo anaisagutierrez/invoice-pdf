@@ -1,5 +1,7 @@
 const gstInput = document.getElementById("gstInput");
 const serviceFeeInput = document.getElementById("serviceFeeInput");
+const deliveryFeeInput = document.getElementById("deliveryFeeInput");
+const deliveryRow = document.getElementById("deliveryRow");
 const salvageInput = document.getElementById("salvageInput");
 const totalgstInput = document.getElementById("totalgstInput");
 const invoiceInput = document.getElementById("invoiceInput");
@@ -13,6 +15,9 @@ const exemptAmount = document.getElementById("exemptAmount");
 const feeRate = document.getElementById("feeRate");
 const feeQty = document.getElementById("feeQty");
 const feeAmount = document.getElementById("feeAmount");
+const deliveryRate = document.getElementById("deliveryRate");
+const deliveryQty = document.getElementById("deliveryQty");
+const deliveryAmount = document.getElementById("deliveryAmount");
 const subtotal = document.getElementById("subtotal");
 const gstRate = document.getElementById("gstRate");
 const gstRate2 = document.getElementById("gstRate2");
@@ -77,14 +82,22 @@ function updateTotals() {
 
     const gst = parseFloat(gstInput.value)/100 || 0;
     const servicefee = parseFloat(serviceFeeInput.value)/100 || 0;
+    const deliveryfee = parseFloat(deliveryFeeInput.value) || 0;
     const salvage = parseFloat(salvageInput.value) || 0;
     const saleRateValue = parseFloat(totalgstInput.value/gst);
     const exemptRateValue = parseFloat(salvage - saleRateValue); 
     const feeRateValue = parseFloat(salvage * servicefee);
-
-    const subtotalValue = saleRateValue + exemptRateValue + feeRateValue;
-    const gstAmountValue = (saleRateValue*gst)+(feeRateValue*gst);
+    const deliveryRateValue = parseFloat(1 * deliveryfee);
+    const subtotalValue = saleRateValue + exemptRateValue + feeRateValue + deliveryRateValue;
+    const gstAmountValue = (saleRateValue*gst)+(feeRateValue*gst)+(deliveryRateValue*gst);
     const totalVal = subtotalValue + gstAmountValue;
+
+    // If delivery fee is 0 or empty, hide the row. Otherwise, show it.
+    if (deliveryfee === 0) {
+        deliveryRow.style.display = 'none';
+    } else {
+        deliveryRow.style.display = 'table-row';
+    }
     
     invoiceNumberHeader.textContent = `INVOICE # ${invoiceInput.value}`|| '';
     saleRate.textContent = formatCurrency(saleRateValue || 0);
@@ -93,6 +106,8 @@ function updateTotals() {
     exemptAmount.textContent = formatCurrency((exemptRateValue*exemptQty.textContent) || 0);
     feeRate.textContent = formatCurrency(feeRateValue || 0);
     feeAmount.textContent = formatCurrency((feeRateValue*feeQty.textContent) || 0);
+    deliveryRate.textContent = formatCurrency(deliveryRateValue || 0);
+    deliveryAmount.textContent = formatCurrency((deliveryRateValue*deliveryQty.textContent) || 0);
     subtotal.textContent = formatCurrency(subtotalValue);
     gstRate.textContent = gstInput.value || 0;
     gstRate2.textContent = gstInput.value || 0;
