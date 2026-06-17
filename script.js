@@ -78,19 +78,40 @@ function updateInvoiceDate() {
     }
 }
 
+function round2(num) {
+  return Math.round((num + Number.EPSILON) * 100) / 100;
+}
+
+
 function updateTotals() {
 
     const gst = parseFloat(gstInput.value)/100 || 0;
     const servicefee = parseFloat(serviceFeeInput.value)/100 || 0;
     const deliveryfee = parseFloat(deliveryFeeInput.value) || 0;
     const salvage = parseFloat(salvageInput.value) || 0;
-    const saleRateValue = parseFloat(totalgstInput.value/gst);
-    const exemptRateValue = parseFloat(salvage - saleRateValue); 
-    const feeRateValue = parseFloat(salvage * servicefee);
-    const deliveryRateValue = parseFloat(1 * deliveryfee);
-    const subtotalValue = saleRateValue + exemptRateValue + feeRateValue + deliveryRateValue;
-    const gstAmountValue = (saleRateValue*gst)+(feeRateValue*gst)+(deliveryRateValue*gst);
-    const totalVal = subtotalValue + gstAmountValue;
+
+    // fix round off issue by rounding to 2 decimal places before calculations
+    // const saleRateValue = round2(parseFloat(totalgstInput.value/gst));
+    // const exemptRateValue = round2(parseFloat(salvage - saleRateValue)); 
+    // const feeRateValue = round2(parseFloat(salvage * servicefee));
+    // const deliveryRateValue = round2(parseFloat(1 * deliveryfee));
+
+    const saleRateValue = round2(totalgstInput.value / gst);
+    const exemptRateValue = round2(salvage - saleRateValue);
+    const feeRateValue = round2(salvage * servicefee);
+    const deliveryRateValue = round2(deliveryfee);
+    
+    // const subtotalValue = saleRateValue + exemptRateValue + feeRateValue + deliveryRateValue;
+    // const gstAmountValue = (saleRateValue*gst)+(feeRateValue*gst)+(deliveryRateValue*gst);
+    // const totalVal = subtotalValue + gstAmountValue;
+
+    const subtotalValue = round2(saleRateValue + exemptRateValue + feeRateValue + deliveryRateValue);
+    const gstAmountValue = round2(saleRateValue*gst)+round2(feeRateValue*gst)+round2(deliveryRateValue*gst);
+    const totalVal = round2(subtotalValue + gstAmountValue);
+
+
+    // end of the fix for round off issue
+
 
     // If delivery fee is 0 or empty, hide the row. Otherwise, show it.
     if (deliveryfee === 0) {
